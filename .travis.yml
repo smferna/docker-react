@@ -5,6 +5,6 @@ services:
   - docker
 
 before_install:
-  - docker build -t smferna/docker-react -f dockerfile.dev .
+  - docker build -t smferna/docker-react -f Dockerfile.dev .
 script:
   - docker run -e CI=true smferna/docker-react npm run test
