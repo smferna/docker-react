@@ -8,3 +8,17 @@ before_install:
   - docker build -t smferna/docker-react -f Dockerfile.dev .
 script:
   - docker run -e CI=true smferna/docker-react npm run test
+
+deploy: 
+  - provider: elasticbeanstalk
+  - region: "us-east-1"
+  - app: "docker-react"
+  - env: "Dockerreact-env"
+  - bucket-name: "elasticbeanstalk-us-east-1-521847714534"
+  - bucket-path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+
+
